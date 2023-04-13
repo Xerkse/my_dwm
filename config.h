@@ -2,7 +2,7 @@
 
 /* constants */ #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER "librewolf"
 
 /* appearance */
 static const double activeopacity   = 1.0f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
@@ -117,7 +117,7 @@ ResourcePref resources[] = {
 };*/
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
-static const char *browser[]  = { "/usr/bin/firefox", NULL };
+static const char *browser[]  = { "/usr/bin/librewolf", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -126,8 +126,8 @@ static Key keys[] = {
     { 0,                            XK_volumeDown,  spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "-2", NULL } } },
     { 0,                            XK_volumeUp,    spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "+2", NULL } } },
     { 0,                            XK_micMute,     spawn,          {.v = (const char*[]){"pulsemixer", "--id", "source-1", "--toggle-mute", NULL } } },
-    { 0,                            XK_brightDown,  spawn,          {.v = (const char*[]){"light" , "-U", "5", NULL } } },
-    { 0,                            XK_brightUp,    spawn,          {.v = (const char*[]){"light" , "-A", "5", NULL } } },
+    { 0,                            XK_brightDown,  spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50-", NULL } } },
+    { 0,                            XK_brightUp,    spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50+", NULL } } },
 
     /* espeak clipboard */
   	{ MODKEY,                       XK_e,           spawn,          {.v = (const char*[]){"read_clipboard", NULL } } },
@@ -183,7 +183,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_r,           quit,           {0} },
 
     /*Password things*/
-	{ MODKEY|ControlMask,           XK_p,           spawn,          SHCMD("passmenu -l 20 -x") },
+	{ MODKEY|ControlMask,           XK_p,           spawn,          SHCMD("dmenupass") },
 	{ MODKEY|ControlMask|ShiftMask, XK_p,           spawn,          {.v = (const char*[]){"gpg-connect-agent", "reloadagent", "/bye", NULL } } },
 };
 
