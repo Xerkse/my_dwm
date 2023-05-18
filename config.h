@@ -1,8 +1,8 @@
-/* See LICENSE file for copyright and license details. */
+/* See LICENSE file for copyright and license details... */
 
 /* constants */ #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "librewolf"
+#define BROWSER $BROWSER
 
 /* appearance */
 static const double activeopacity   = 1.0f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
