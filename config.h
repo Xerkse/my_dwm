@@ -46,6 +46,8 @@ static const Rule rules[] = {
         { "Gimp",    NULL,     NULL,           1 << 8,    0,          0,           0,        -1 },
         { TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
         { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+        { "mpv",     NULL,     "Webcam",       1 << 8,    1,          0,           0,        -1 }, /* xev */
+        { "zotero",  NULL,     "Quick Format Citation",1 << 8, 1,     0,           0,        -1 }, /* xev */
 };
 
 /* layout(s) */
