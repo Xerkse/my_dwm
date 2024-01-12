@@ -1,8 +1,8 @@
-/* See LICENSE file for copyright and license details. */
+/* See LICENSE file for copyright and license details... */
 
 /* constants */ #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER $BROWSER
 
 /* appearance */
 static const double activeopacity   = 1.0f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
@@ -46,6 +46,8 @@ static const Rule rules[] = {
         { "Gimp",    NULL,     NULL,           1 << 8,    0,          0,           0,        -1 },
         { TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
         { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+        { "mpv",     NULL,     "Webcam",       1 << 8,    1,          0,           0,        -1 }, /* xev */
+        { "zotero",  NULL,     "Quick Format Citation",1 << 8, 1,     0,           0,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -126,8 +128,8 @@ static Key keys[] = {
     { 0,                            XK_volumeDown,  spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "-2", NULL } } },
     { 0,                            XK_volumeUp,    spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "+2", NULL } } },
     { 0,                            XK_micMute,     spawn,          {.v = (const char*[]){"pulsemixer", "--id", "source-1", "--toggle-mute", NULL } } },
-    { 0,                            XK_brightDown,  spawn,          {.v = (const char*[]){"light" , "-U", "5", NULL } } },
-    { 0,                            XK_brightUp,    spawn,          {.v = (const char*[]){"light" , "-A", "5", NULL } } },
+    { 0,                            XK_brightDown,  spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50-", NULL } } },
+    { 0,                            XK_brightUp,    spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50+", NULL } } },
 
     /* espeak clipboard */
   	{ MODKEY,                       XK_e,           spawn,          {.v = (const char*[]){"read_clipboard", NULL } } },
@@ -183,7 +185,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_r,           quit,           {0} },
 
     /*Password things*/
-	{ MODKEY|ControlMask,           XK_p,           spawn,          SHCMD("passmenu -l 20 -x") },
+	{ MODKEY|ControlMask,           XK_p,           spawn,          SHCMD("dmenupass") },
 	{ MODKEY|ControlMask|ShiftMask, XK_p,           spawn,          {.v = (const char*[]){"gpg-connect-agent", "reloadagent", "/bye", NULL } } },
 };
 
