@@ -9,8 +9,6 @@ static const double activeopacity   = 1.0f;     /* Window opacity when it's focu
 static const double inactiveopacity = 0.9f;   /* Window opacity when it's inactive (0 <= opacity <= 1) */
 static       Bool bUseOpacity       = True;     /* Starts with opacity on any unfocused windows */
 
-
-
 static const unsigned int borderpx  = 4;        /* border pixel of windows       3*/
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int gappih    = 16;       /* horiz inner gap between windows */
@@ -117,9 +115,10 @@ ResourcePref resources[] = {
 	{ "color4",		STRING,  &selbgcolor },
 	{ "color7",		STRING,  &selbordercolor },
 };*/
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "10",  NULL };
 
 static const char *browser[]  = { "/usr/bin/firefox", NULL };
+static const char *browser2[]  = { "/usr/bin/firefox", "-P", "default" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -142,7 +141,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_a,           spawn,          {.v = (const char*[]){ TERMINAL, "-e", "pulsemixer", NULL } } },
 	{ MODKEY,                       XK_r,           spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_x,           spawn,          {.v = termcmd } },
-	{ MODKEY,               		XK_w,           spawn,          {.v = browser } },
+	{ MODKEY,			XK_w,           spawn,          {.v = browser } },
+	{ MODKEY|ShiftMask,		XK_w,           spawn,          {.v = browser2 } },
 	{ MODKEY,                       XK_b,           togglebar,      {0} },
 	{ MODKEY,                       XK_j,           focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,           focusstack,     {.i = -1 } },
