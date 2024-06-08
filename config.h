@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
         /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-        { "Gimp",    NULL,     NULL,           1 << 8,    0,          0,           0,        -1 },
+        { "Gimp",    NULL,     NULL,           1 << 9,    0,          0,           0,        -1 },
         { TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
         { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
         { "mpv",     NULL,     "Webcam",       1 << 8,    1,          0,           0,        -1 }, /* xev */
@@ -117,6 +117,10 @@ ResourcePref resources[] = {
 };*/
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "10",  NULL };
 
+static const char dmenu_sudo_prompt[] = "THIS IS WILL BE RUN AS SUDO: ";
+
+static const char *sudo_dmenucmd[] = { "sudo", "dmenu_run", "-m", dmenumon, "-p", dmenu_sudo_prompt, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "10",  NULL };
+
 static const char *browser[]  = { "/usr/bin/firefox", NULL };
 static const char *browser2[]  = { "/usr/bin/firefox", "-P", "default" };
 
@@ -140,6 +144,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,           spawn,          {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY|ShiftMask,             XK_a,           spawn,          {.v = (const char*[]){ TERMINAL, "-e", "pulsemixer", NULL } } },
 	{ MODKEY,                       XK_r,           spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,            XK_r,           spawn,          {.v = sudo_dmenucmd } },
 	{ MODKEY,                       XK_x,           spawn,          {.v = termcmd } },
 	{ MODKEY,			XK_w,           spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,           spawn,          {.v = browser2 } },
