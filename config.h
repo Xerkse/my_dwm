@@ -145,7 +145,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_a,           spawn,          {.v = (const char*[]){ TERMINAL, "-e", "pulsemixer", NULL } } },
 	{ MODKEY,                       XK_r,           spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,		XK_r,           spawn,          {.v = sudo_dmenucmd } },
+
 	{ MODKEY,                       XK_x,           spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_x,           spawn,          SHCMD("sd") },
+
 	{ MODKEY,			XK_w,           spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,           spawn,          {.v = browser2 } },
 	{ MODKEY,                       XK_j,           focusstack,     {.i = +1 } },
