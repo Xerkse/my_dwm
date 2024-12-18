@@ -181,8 +181,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_g,           setlayout,      {.v = &layouts[7]} },
 	{ MODKEY|ControlMask,           XK_g,           setlayout,      {.v = &layouts[9]} },
 
-	{ MODKEY,                       XK_m,           setlayout,      {.v = &layouts[11]} },
-	{ MODKEY|ShiftMask,             XK_m,           setlayout,      {.v = &layouts[12]} },
+	{ MODKEY,                       XK_m,           setlayout,      SHCMD("mounter") },
+	{ MODKEY|ShiftMask,             XK_m,           setlayout,      SHCMD("unmounter") },
+	{ MODKEY|ControlMask,           XK_m,           setlayout,      {.v = &layouts[11]} },
+	{ MODKEY|ShiftMask|ControlMask, XK_m,           setlayout,      {.v = &layouts[12]} },
 
 	{ MODKEY|ShiftMask,             XK_space,       setlayout,      {0} },
 	{ MODKEY,                       XK_space,       togglefloating, {0} },
