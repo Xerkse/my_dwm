@@ -150,7 +150,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_x,           spawn,          SHCMD("sd") },
 
 	{ MODKEY,			XK_w,           spawn,          {.v = browser } },
-	{ MODKEY|ShiftMask,		XK_w,           spawn,          {.v = browser2 } },
+	{ MODKEY|ControlMask,		XK_w,           spawn,          {.v = browser2 } },
 	{ MODKEY,                       XK_j,           focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,           focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,           incnmaster,     {.i = +1 } },
