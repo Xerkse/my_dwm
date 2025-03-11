@@ -89,6 +89,9 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+// xmodmap -pk can be used to get the names of key codes
+// xev keys can be intersepted by the window manager, so getting mappings bay be hard if they are already used for something
+
 /* i added */
 /*
 #define XK_micMute              0xffc1
@@ -96,12 +99,17 @@ static const Layout layouts[] = {
 #define XK_mute                 0xffbe
 #define XK_volumeUp             0xffc0
 */
-#define XK_mute                 0x1008ff12
+
+//trying something
+#include <X11/XF86keysym.h>
+/*
+#define XK_mute                 0xff12
 #define XK_volumeDown           0x1008ff11
 #define XK_volumeUp             0x1008ff13
 #define XK_micMute              0x1008ffb2
 #define XK_brightDown           0x1008ff03
 #define XK_brightUp             0x1008ff02
+*/
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
@@ -127,12 +135,13 @@ static const char *browser2[]  = { "/usr/bin/firefox", "-P", "default" };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* thinkpad things */
-    { 0,                            XK_mute,        spawn,          {.v = (const char*[]){"pulsemixer", "--toggle-mute", NULL } } },
-    { 0,                            XK_volumeDown,  spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "-2", NULL } } },
-    { 0,                            XK_volumeUp,    spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "+2", NULL } } },
-    { 0,                            XK_micMute,     spawn,          {.v = (const char*[]){"pulsemixer", "--id", "source-1", "--toggle-mute", NULL } } },
-    { 0,                            XK_brightDown,  spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50-", NULL } } },
-    { 0,                            XK_brightUp,    spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50+", NULL } } },
+    { 0,                            XF86XK_AudioMute,spawn,          {.v = (const char*[]){"pulsemixer", "--toggle-mute", NULL } } },
+    //{ 0,                            XK_mute,        spawn,          {.v = (const char*[]){"pulsemixer", "--toggle-mute", NULL } } },
+    { 0,                            XF86XK_AudioLowerVolume,  spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "-2", NULL } } },
+    { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = (const char*[]){"pulsemixer", "--change-volume", "+2", NULL } } },
+    { 0,                            XF86XK_AudioMicMute,     spawn,          {.v = (const char*[]){"pulsemixer", "--id", "source-1", "--toggle-mute", NULL } } },
+    { 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50-", NULL } } },
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = (const char*[]){"brightnessctl" , "s", "50+", NULL } } },
 
     /* espeak clipboard */
   	{ MODKEY,                       XK_e,           spawn,          {.v = (const char*[]){"read_clipboard", NULL } } },
