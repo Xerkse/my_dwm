@@ -130,7 +130,7 @@ static const char dmenu_sudo_prompt[] = "THIS IS WILL BE RUN AS SUDO: ";
 static const char *sudo_dmenucmd[] = { "sudo", "dmenu_run", "-m", dmenumon, "-p", dmenu_sudo_prompt, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "10",  NULL };
 
 static const char *browser[]  = { "/usr/bin/firefox", "-P", "arkenfox" };
-static const char *browser2[]  = { "/usr/bin/firefox", "-P", "default" };
+static const char *browser2[]  = { "/usr/bin/firefox", "-P", "default-release" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -196,6 +196,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask|ControlMask, XK_m,           setlayout,      {.v = &layouts[12]} },
 
 	{ MODKEY,                       XK_d,           spawn,          SHCMD("displayselect") },
+	{ MODKEY|ShiftMask,             XK_d,           spawn,          SHCMD("fixdisplay") },
 
 	{ MODKEY|ShiftMask,             XK_space,       setlayout,      {0} },
 	{ MODKEY,                       XK_space,       togglefloating, {0} },
